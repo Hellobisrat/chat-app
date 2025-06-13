@@ -3,9 +3,14 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const messageSchema = new Schema({
-  sender:   { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-  content:  { type: String, required: true },
-  chat:     { type: mongoose.Schema.Types.ObjectId, ref: "Chat" },
+  chatId: {type:mongoose.Schema.Types.ObjectId,ref:'Chat'},
+  sender:   { type: mongoose.Schema.Types.ObjectId, ref: "User"},
+  text:  { type: String, required: true },
+  read: {
+    type: Boolean,
+    default:false
+  }
+ 
 
 },{timestamps:true})
 

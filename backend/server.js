@@ -1,8 +1,13 @@
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
+import authRouter from "./routes/authRoutes.js";
+import userRouter from "./routes/userRoutes.js";
+import chatRouter from "./routes/chatRouter.js";
+import messageRouter from "./routes/messageRouter.js";
 import cors from "cors";
 import dotenv from 'dotenv';
+
 dotenv.config();
 
 const PORT = process.env.PORT||5000;
@@ -10,6 +15,11 @@ const PORT = process.env.PORT||5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use('/api/auth',authRouter);
+app.use('/api/user',userRouter);
+app.use('/api/chat',chatRouter);
+app.use('/api/message',messageRouter);
+
 
 const server = http.createServer(app);
 
